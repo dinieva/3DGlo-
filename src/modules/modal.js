@@ -3,7 +3,6 @@ const modal = () => {
     const modal = document.querySelector('.popup')
     const closeBtn = modal.querySelector('.popup-close')
 
-    console.log(window.innerWidth);
     if (window.innerWidth >= '768') {
         console.log('hello');
         modal.style.cssText = `

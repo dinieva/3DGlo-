@@ -17,7 +17,15 @@ const menu = () => {
     menuBtn.addEventListener('click', handleMenu);
     closeBtn.addEventListener('click', handleMenu);
 
-    menuItems.forEach(menuItem => menuItem.addEventListener('click', handleMenu));
+    menuItems.forEach(menuItem => menuItem.addEventListener('click', function (e) {
+        e.preventDefault();
+        const id = menuItem.getAttribute('href');
+        document.querySelector(id).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        handleMenu();
+    }));
 }
 
 export default menu
