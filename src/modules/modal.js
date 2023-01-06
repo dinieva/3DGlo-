@@ -4,7 +4,6 @@ const modal = () => {
     const closeBtn = modal.querySelector('.popup-close')
 
     if (window.innerWidth >= '768') {
-        console.log('hello');
         modal.style.cssText = `
         display: flex;
         visibility: hidden;
@@ -25,7 +24,6 @@ const modal = () => {
             }, 300);
         });
     } else if (window.innerWidth < '768') {
-        console.log('hi');
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
                 modal.style.display = 'block';
