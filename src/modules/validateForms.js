@@ -13,13 +13,13 @@ const validate = () => {
 
                 if (e.target.type === 'email') {
                     //только латиницы в любом регистре, цифры и спецсимволы:  @  -  _  . ! ~ * '
-                    e.target.value = e.target.value.replace(/^[\w]{1}[\w-\.-!~*']*@[\w-]+\.[a-z]{2,4}$/i, '');
+                    //e.target.value = e.target.value.replace(/[а-яё\)\(\s\?\&\:\%\;\$\#\+\^"]/gi, '');
+                    e.target.value = e.target.value.replace(/[^\w\@\-\.\!\~\*\']/gi, '');
+                    ///[^a-z0-9\-\@\_\.\!\~\*\']$/i
                 }
-
                 if (e.target.type === 'tel') {
                     // ввод только цифр, круглых скобок и дефис
                     e.target.value = e.target.value.replace(/[^\d\(\)\-]/g, '');
-                    ///^[^\d\+][\d\(\)\-]*\d$/
                 };
             });
         });
