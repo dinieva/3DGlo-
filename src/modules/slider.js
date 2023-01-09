@@ -46,17 +46,14 @@ const slider = () => {
         prevSlide(dots, currentSlide, 'dot-active')
         currentSlide++
 
-        /* if (!(dots.length - 1) == currentSlide) {
-            addDots()
-            console.log(dotsBlock.length);
-        } */
+        addDots()
+
 
         if (currentSlide >= slides.length) {
             currentSlide = 0
         }
 
         nextSlide(slides, currentSlide, 'portfolio-item-active')
-        dotsBlock.append(newDot);
         nextSlide(dots, currentSlide, 'dot-active')
     }
 
