@@ -6,6 +6,7 @@ import nextSlide from './modules/nextSlide'
 import calc from './modules/calculator'
 import validate from './modules/validateForms'
 import tabs from './modules/tabs'
+import slider from './modules/slider'
 
 timer('29 january 2023')
 menu()
@@ -14,4 +15,5 @@ nextSlide()
 calc()
 validate()
 tabs()
+slider()
 
