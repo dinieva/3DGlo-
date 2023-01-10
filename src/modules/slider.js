@@ -9,28 +9,20 @@ const slider = () => {
     let currentSlide = 0;
     let interval;
 
-    //создается кнопка пагинации 
-    let newDot = document.createElement('li');
-    newDot.classList.add('dot');
-
     //Удалить все элементы со страницы с классом dot (из верстки Index.html)
-    const removeDots = () => {
+    const clearDotsBlock = () => {
         //---- 1 способ ----
-        // dotsBlock.innerHTML = ' ';
+        dotsBlock.innerHTML = ' ';
         //---- 2 способ ----
-        while (dotsBlock.firstChild) {
+        /* while (dotsBlock.firstChild) {
             dotsBlock.removeChild(dotsBlock.lastChild)
-        }
+        } */
         //---- 3 способ ----
         //dotsBlock.replaceChildren();
         //---- 4 способ ----
-        /*  dots.forEach((dot, index) => {
-             dotsBlock.remove(dots[index]);
-         }) */
-    }
-    //кнопка пагинации добавляется в dotsBlock 
-    const addDots = () => {
-        dotsBlock.append(newDot);
+        /* dots.forEach((dot, index) => {
+            dotsBlock.remove(dots[index]);
+        }) */
     }
 
     const prevSlide = (elems, index, strClass) => {
@@ -41,20 +33,26 @@ const slider = () => {
         elems[index].classList.add(strClass)
     }
 
+    const addDots = (nodeList, index) => {
+        dotsBlock.append(nodeList[index])
+    }
+    const removeDots = (nodeList, index) => {
+        (nodeList[index]).remove()
+    }
     const autoSlide = () => {
         prevSlide(slides, currentSlide, 'portfolio-item-active')
         prevSlide(dots, currentSlide, 'dot-active')
         currentSlide++
 
-        addDots()
-
-
         if (currentSlide >= slides.length) {
             currentSlide = 0
+            clearDotsBlock()
         }
 
         nextSlide(slides, currentSlide, 'portfolio-item-active')
         nextSlide(dots, currentSlide, 'dot-active')
+        addDots(dots, currentSlide)
+
     }
 
     const startSlide = (timer = 1500) => {
@@ -72,12 +70,15 @@ const slider = () => {
         }
         prevSlide(slides, currentSlide, 'portfolio-item-active')
         prevSlide(dots, currentSlide, 'dot-active')
+
         if (e.target.matches('#arrow-right')) {
             currentSlide++
-
+            addDots(dots, currentSlide);
 
         } else if (e.target.matches('#arrow-left')) {
             currentSlide--
+            removeDots(dots, currentSlide)
+
         } else if (e.target.classList.contains('dot')) {
             dots.forEach((dot, index) => {
                 if (e.target === dot) {
@@ -112,7 +113,7 @@ const slider = () => {
         }
     }, true)
 
-    removeDots() // удаляем пагинацию
+    clearDotsBlock() // удаляем пагинацию из блока
     startSlide(timeInterval) //запускаем таймер
 
 }
