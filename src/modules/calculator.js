@@ -1,3 +1,5 @@
+import { animateCalc } from './helpers'
+
 const calc = (price = 100) => { //(price = 100) - значение по умолчанию
     console.log('calc');
     const calcBlock = document.querySelector('.calc-block')
@@ -32,8 +34,9 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
             totalValue = 0
         }
         if (calcType.value && calcSquare.value > 0 && calcCount.value > 0 && calcDay.value > 0) {
-            const time = 1000;
-            const step = 50;
+
+            /* const time = 1000; //промежуток за который пересчитывается итоговая сумма,т.е длительность
+            const step = 50; //шаг,который прибавляется 
 
             const changeSum = (num, elem) => {
                 let n = 0;
@@ -46,10 +49,27 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
                     elem.textContent = n;
                 }, t);
             }
-            changeSum(totalValue, total)
+
+            changeSum(totalValue, total) */
+
+            animateCalc({
+                duration: 1000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+
+                draw(progress) {
+                    /* let n = 0;
+                    n = n + 50;
+                    if (n == totalValue) {
+                        cancelAnimationFrame(requestId);
+                    } */
+                    total.textContent = totalValue;
+                }
+            });
         }
 
-        //total.textContent = totalValue
+        console.log(totalValue)
 
     }
 

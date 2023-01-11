@@ -17,5 +17,5 @@ calc()
 validate()
 tabs()
 slider()
-calculator()
+calculator(100)
 
