@@ -20,9 +20,9 @@ const modal = () => {
 
                 setTimeout(() => {
                     animate({
-                        duration: 100,
+                        duration: 1000,
                         timing(timeFraction) {
-                            return timeFraction;
+                            return 1 - Math.sin(Math.acos(timeFraction));
                         },
 
                         draw(progress) {
