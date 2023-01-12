@@ -35,6 +35,7 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
             totalValue = 0
         }
 
+        //total.textContent = totalValue
         const duration = 1000;
         const step = 5;
 
@@ -52,12 +53,8 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
             }
 
         }
-
         console.log(totalValue);
         changeSum(totalValue, total);
-
-        //total.textContent = totalValue
-
 
         // увеличение суммы методом requestAnimationFrame
         /* animateCalc({
@@ -73,7 +70,7 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
     calcBlock.addEventListener('input', (e) => {
         if (e.target === calcType || e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
-            countCalc()
+            countCalc();
         }
     })
 }
