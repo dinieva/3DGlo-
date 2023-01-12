@@ -26,20 +26,25 @@ const animate = ({ timing, draw, duration }) => { // передается объ
     });
 }
 
-const animateCalc = ({ timing, draw, duration }) => {
-    let start = performance.now();
-    let requestId = requestAnimationFrame(function animate(time) {
-        // timeFraction изменяется от 0 до 1
-        let timeFraction = (time - start) / duration;
+const animateCalc = (options) => {
+    let start = performance.now(); // сохранить время начала
 
-        if (timeFraction > 1) timeFraction = 1;
-        // вычисление текущего состояния анимации
-        let progress = timing(timeFraction);
-        draw(progress); // отрисовать её
-        if (timeFraction < 1) {
-            requestAnimationFrame(animateCalc);
+    requestAnimationFrame(function func() {
+        let timePassed = Date.now() - start;
+        let progress = timePassed / options.duration;
+        let timeFunction = options.timeFunction || function (progress) {
+            return progress;
+        };
+        progress = progress > 1 ? 1 : progress;
+        options.step(timeFunction(progress));
+        if (progress === 1) {
+            options.complete();
+        } else {
+            requestAnimationFrame(func);
         }
     });
 }
+
+
 
 export { slicer, animate, animateCalc }

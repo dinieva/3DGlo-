@@ -2,6 +2,7 @@ import { animateCalc } from './helpers'
 
 const calc = (price = 100) => { //(price = 100) - значение по умолчанию
     console.log('calc');
+
     const calcBlock = document.querySelector('.calc-block')
     const calcType = document.querySelector('.calc-type')
     const calcSquare = document.querySelector('.calc-square')
@@ -33,14 +34,14 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
         } else {
             totalValue = 0
         }
-        if (calcType.value && calcSquare.value > 0 && calcCount.value > 0 && calcDay.value > 0) {
 
-            /* const time = 1000; //промежуток за который пересчитывается итоговая сумма,т.е длительность
-            const step = 50; //шаг,который прибавляется 
+        const duration = 1000;
+        const step = 5;
 
-            const changeSum = (num, elem) => {
-                let n = 0;
-                let t = Math.round(time / (num / step));
+        function changeSum(num, elem) {
+            let n = 0;
+            if (n < num) {
+                let t = Math.round(duration / (num / step));
                 let interval = setInterval(() => {
                     n = n + step;
                     if (n == num) {
@@ -50,37 +51,31 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
                 }, t);
             }
 
-            changeSum(totalValue, total) */
-
-            animateCalc({
-                duration: 1000,
-                timing(timeFraction) {
-                    return timeFraction;
-                },
-
-                draw(progress) {
-                    /* let n = 0;
-                    n = n + 50;
-                    if (n == totalValue) {
-                        cancelAnimationFrame(requestId);
-                    } */
-                    total.textContent = totalValue;
-                }
-            });
         }
 
-        console.log(totalValue)
+        console.log(totalValue);
+        changeSum(totalValue, total);
 
+        //total.textContent = totalValue
+
+
+        // увеличение суммы методом requestAnimationFrame
+        /* animateCalc({
+            duration: 1000,
+            step: function (progress) {
+                let result = totalValue * progress;
+                total.innerHTML = result * progress;
+            },
+            complete: function () { }
+        }); */
     }
 
-    calcBlock.addEventListener('change', (e) => {
+    calcBlock.addEventListener('input', (e) => {
         if (e.target === calcType || e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
             countCalc()
         }
     })
-
-
 }
 
 export default calc
