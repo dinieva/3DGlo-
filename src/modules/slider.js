@@ -7,6 +7,7 @@ const slider = () => {
     const timeInterval = 2000;
 
     let currentSlide = 0;
+
     let interval;
 
     //Удалить все элементы со страницы с классом dot (из верстки Index.html)
@@ -33,12 +34,10 @@ const slider = () => {
         elems[index].classList.add(strClass)
     }
 
-    const addDots = (nodeList, index) => {
-        dotsBlock.append(nodeList[index])
+    const checkDots = (index) => {
+        dotsBlock.append(dots[index])
     }
-    const removeDots = (nodeList, index) => {
-        (nodeList[index]).remove()
-    }
+
     const autoSlide = () => {
         prevSlide(slides, currentSlide, 'portfolio-item-active')
         prevSlide(dots, currentSlide, 'dot-active')
@@ -46,13 +45,12 @@ const slider = () => {
 
         if (currentSlide >= slides.length) {
             currentSlide = 0
-            clearDotsBlock()
+            dotsBlock.innerHTML = ' '
         }
 
         nextSlide(slides, currentSlide, 'portfolio-item-active')
         nextSlide(dots, currentSlide, 'dot-active')
-        addDots(dots, currentSlide)
-
+        checkDots(currentSlide)
     }
 
     const startSlide = (timer = 1500) => {
@@ -73,11 +71,20 @@ const slider = () => {
 
         if (e.target.matches('#arrow-right')) {
             currentSlide++
-            addDots(dots, currentSlide);
 
         } else if (e.target.matches('#arrow-left')) {
             currentSlide--
-            removeDots(dots, currentSlide)
+            dots[currentSlide + 1].remove();
+            if (dotsBlock.children.length == 0) {
+                console.log('oops');
+                dotsBlock.append(dots[0])
+                dotsBlock.append(dots[1])
+                dotsBlock.append(dots[2])
+                dotsBlock.append(dots[3])
+                dotsBlock.append(dots[4])
+                dotsBlock.append(dots[5])
+            }
+            console.log(dotsBlock.children.length);
 
         } else if (e.target.classList.contains('dot')) {
             dots.forEach((dot, index) => {
@@ -89,6 +96,7 @@ const slider = () => {
 
         if (currentSlide >= slides.length) {
             currentSlide = 0
+            dotsBlock.innerHTML = ' '
         }
 
         if (currentSlide < 0) {
@@ -97,6 +105,7 @@ const slider = () => {
 
         nextSlide(slides, currentSlide, 'portfolio-item-active')
         nextSlide(dots, currentSlide, 'dot-active')
+        checkDots(currentSlide)
     })
 
     //останавливаем таймер при наведении курсора на стрелки и переключатели 
@@ -113,9 +122,10 @@ const slider = () => {
         }
     }, true)
 
-    clearDotsBlock() // удаляем пагинацию из блока
     startSlide(timeInterval) //запускаем таймер
-
+    console.dir(dotsBlock);
+    clearDotsBlock()// удаляем пагинацию из блока
+    checkDots(currentSlide)
 }
 
 export default slider

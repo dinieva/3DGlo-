@@ -43,7 +43,7 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
         }, 0, totalValue, 1000);
 
         // увеличение суммы методом setInterval
-        /* 
+        /*
             const duration = 1000;
             const step = 1;
     
@@ -62,7 +62,7 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
                 }
             }
             changeSum(totalValue, total);
-         */
+        */
     }
 
     calcBlock.addEventListener('input', (e) => {
