@@ -26,23 +26,17 @@ const animate = ({ timing, draw, duration }) => { // передается объ
     });
 }
 
-const animateCalc = (options) => {
-    let start = performance.now(); // сохранить время начала
-
-    requestAnimationFrame(function func() {
-        let timePassed = Date.now() - start;
-        let progress = timePassed / options.duration;
-        let timeFunction = options.timeFunction || function (progress) {
-            return progress;
+const animateCalc = (callback, from, to, duration) => {
+    let start = null, // сохранить время начала
+        animate = timestamp => {
+            start = start || timestamp;
+            let progress = Math.min((timestamp - start) / duration, 1);
+            callback(progress * (to - from) + from);
+            if (progress < 1) {
+                window.requestAnimationFrame(animate);
+            }
         };
-        progress = progress > 1 ? 1 : progress;
-        options.step(timeFunction(progress));
-        if (progress === 1) {
-            options.complete();
-        } else {
-            requestAnimationFrame(func);
-        }
-    });
+    window.requestAnimationFrame(animate);
 }
 
 

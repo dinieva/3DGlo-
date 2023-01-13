@@ -34,37 +34,35 @@ const calc = (price = 100) => { //(price = 100) - значение по умол
         } else {
             totalValue = 0
         }
-
-        //total.textContent = totalValue
-        const duration = 1000;
-        const step = 5;
-
-        function changeSum(num, elem) {
-            let n = 0;
-            if (n < num) {
-                let t = Math.round(duration / (num / step));
-                let interval = setInterval(() => {
-                    n = n + step;
-                    if (n == num) {
-                        clearInterval(interval);
-                    }
-                    elem.textContent = n;
-                }, t);
-            }
-
-        }
         console.log(totalValue);
-        changeSum(totalValue, total);
+        //total.textContent = totalValue
 
         // увеличение суммы методом requestAnimationFrame
-        /* animateCalc({
-            duration: 1000,
-            step: function (progress) {
-                let result = totalValue * progress;
-                total.innerHTML = result * progress;
-            },
-            complete: function () { }
-        }); */
+        animateCalc(value => {
+            total.textContent = Math.floor(value);
+        }, 0, totalValue, 1000);
+
+        // увеличение суммы методом setInterval
+        /* 
+            const duration = 1000;
+            const step = 1;
+    
+            function changeSum(num, elem) {
+                let n = 0;
+                if (n < num) {
+                    //let t = Math.round(duration / (num / step));
+                    let t = duration / (num / step);
+                    let interval = setInterval(() => {
+                        n = n + step;
+                        if (n == num) {
+                            clearInterval(interval);
+                        }
+                        elem.textContent = n;
+                    }, t);
+                }
+            }
+            changeSum(totalValue, total);
+         */
     }
 
     calcBlock.addEventListener('input', (e) => {
