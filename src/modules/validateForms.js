@@ -22,6 +22,28 @@ const validate = () => {
                     e.target.value = e.target.value.replace(/[^\d\(\)\-]/g, '');
                 }
             });
+            //валидацию данных при отправке задание урок27 п.3
+            input.addEventListener('input', (e) => {
+                if (e.target.name == "user_phone") {
+                    if (/^[+\-()0-9\s]+$/g.test(input.value)) {
+                        e.target.classList.add('success')
+                    }
+                    console.log(e.target.classList.contains('success'));
+                }
+
+                if (e.target.name == "user_name") {
+                    if (/^[А-ЯЁ]+$/ig.test(input.value)) {
+                        e.target.classList.add('success')
+                    }
+                    console.log(e.target.classList.contains('success'));
+                }
+                if (e.target.name == "user_message") {
+                    if (/^[?!,.а-яА-ЯёЁ0-9\s]+$/g.test(input.value)) {
+                        e.target.classList.add('success')
+                    }
+                    console.log(e.target.classList.contains('success'));
+                }
+            });
 
             input.addEventListener('blur', (e) => {
                 const reg1 = /\s+/gi; //Несколько идущих подряд пробелов должны заменяться на один.

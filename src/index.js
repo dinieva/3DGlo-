@@ -8,6 +8,7 @@ import validate from './modules/validateForms'
 import tabs from './modules/tabs'
 import slider from './modules/slider'
 import calculator from './modules/calculator'
+import sendForm from './modules/sendForm'
 
 timer('29 january 2023')
 menu()
@@ -18,4 +19,31 @@ validate()
 tabs()
 slider()
 calculator(100)
+sendForm({
+    formId: 'form1',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ],
+})
+sendForm({
+    formId: 'form2',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ],
+})
+sendForm({
+    formId: 'form3',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ],
+})
 
