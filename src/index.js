@@ -28,6 +28,7 @@ sendForm({
         }
     ],
 })
+
 sendForm({
     formId: 'form2',
     someElem: [
@@ -37,6 +38,7 @@ sendForm({
         }
     ],
 })
+
 sendForm({
     formId: 'form3',
     someElem: [
@@ -46,4 +48,3 @@ sendForm({
         }
     ],
 })
-

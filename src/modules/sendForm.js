@@ -35,6 +35,7 @@ const sendForm = ({ formId, someElem = [] }) => {
         const formBody = {}
         const preloader = document.createElement("IMG");
         preloader.src = 'https://i.gifer.com/1V7X.gif';
+        const popup = document.querySelector('.popup');
 
         //statusBlock.textContent = loadText
 
@@ -60,15 +61,18 @@ const sendForm = ({ formId, someElem = [] }) => {
                 .then(data => {
                     preloader.style.display = 'none'
                     statusBlock.textContent = successText
+                    popup.style.display = 'none'
 
                     formElements.forEach(input => {
                         input.value = ''
                     })
                 })
                 .catch(error => {
+                    preloader.style.display = 'none'
                     statusBlock.textContent = errorText
                 })
         } else {
+            preloader.style.display = 'none'
             alert('Данные не валидны!!!')
         }
     }

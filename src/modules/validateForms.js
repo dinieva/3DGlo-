@@ -31,12 +31,20 @@ const validate = () => {
                     console.log(e.target.classList.contains('success'));
                 }
 
-                if (e.target.name == "user_name") {
-                    if (/^[А-ЯЁ]+$/ig.test(input.value)) {
+                if (e.target.name == 'user_email') {
+                    if (/^[@?!~,.\w]+$/gi.test(input.value)) {
                         e.target.classList.add('success')
                     }
                     console.log(e.target.classList.contains('success'));
                 }
+
+                if (e.target.name == "user_name") {
+                    if (/^[А-ЯЁ\s]+$/gi.test(input.value)) {
+                        e.target.classList.add('success')
+                    }
+                    console.log(e.target.classList.contains('success'));
+                }
+
                 if (e.target.name == "user_message") {
                     if (/^[?!,.а-яА-ЯёЁ0-9\s]+$/g.test(input.value)) {
                         e.target.classList.add('success')
