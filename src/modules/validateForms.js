@@ -25,7 +25,7 @@ const validate = () => {
             //валидацию данных при отправке задание урок27 п.3
             input.addEventListener('input', (e) => {
                 if (e.target.name == "user_phone") {
-                    if (/^[+\-()0-9\s]+$/g.test(input.value)) {
+                    if (/^\+?(\d{1})?[-.\s]?\(?(?:\d{3})\)?[-.\s]?\d\d\d[-.\s]?\d\d[-.\s]?\d\d$/.test(input.value)) {
                         e.target.classList.add('success')
                     }
                     console.log(e.target.classList.contains('success'));
@@ -64,6 +64,7 @@ const validate = () => {
                 e.target.value = e.target.value.replace(reg2, '-');
                 e.target.value = e.target.value.replace(reg3, '');
                 e.target.value = e.target.value.replace(reg4, '');
+                // ввод только цифр, круглых скобок и дефис
                 if (input.type === 'tel') {
                     e.target.value = e.target.value.replace(/[^\d\(\)\-]/g, '');
                 }
