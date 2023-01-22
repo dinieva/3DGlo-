@@ -1,5 +1,4 @@
 const tabs = () => {
-    console.log('tabs');
     const tabPanel = document.querySelector('.service-header');
     const tabs = document.querySelectorAll('.service-header-tab');
     const tabContent = document.querySelectorAll('.service-tab');

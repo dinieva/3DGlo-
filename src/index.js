@@ -9,6 +9,7 @@ import tabs from './modules/tabs'
 import slider from './modules/slider'
 import calculator from './modules/calculator'
 import sendForm from './modules/sendForm'
+import { swiperSliderFunc } from './modules/swiperSlider'
 
 timer('29 january 2023')
 menu()
@@ -48,3 +49,5 @@ sendForm({
         }
     ],
 })
+
+swiperSliderFunc()

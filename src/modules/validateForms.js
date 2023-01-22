@@ -1,5 +1,4 @@
 const validate = () => {
-    console.log('validate');
     const forms = document.querySelectorAll('form');
 
     forms.forEach(function (form) {

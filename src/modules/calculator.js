@@ -1,7 +1,6 @@
 import { animateCalc } from './helpers'
 
 const calc = (price = 100) => { //(price = 100) - значение по умолчанию
-    console.log('calc');
 
     const calcBlock = document.querySelector('.calc-block')
     const calcType = document.querySelector('.calc-type')
